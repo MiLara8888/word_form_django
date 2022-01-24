@@ -1,0 +1,93 @@
+{% extends 'wordforms/base.html' %}
+{% load static %}
+{% block content %}
+<div class="row justify-content-center mt-1">
+      <div class="col-md-8 text-center">
+          <div class="card" >
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><h6>Ваше слово - {{ word }}</h6></li>
+                <li class="list-group-item"><h6>Основная форма - {{ name }}</h6></li>
+                <li class="list-group-item"><h6>{{ basic }}</h6></li>
+             </ul>
+            </div>
+      </div>
+</div>
+
+
+{% if logos == "глагол" %}
+<b>Инфинитив - {{ infin }}</b><br>
+<b>Причастие - {{ participle }}</b><br>
+<b>Деепричастие - {{ deyeprichastiye }}</b><br>
+<b>Повелительное наклонение - {{ imperative }}</b><br>
+<br>
+<div class="container">
+  <div class="row align-items-start">
+    <div class="col">
+
+        <b>Настоящее время с местоимениями:</b><br>
+        {% for i in prezent %}
+        <ul>
+            <li>{{ i }}</li>
+
+        </ul>
+        {% endfor %}
+    </div>
+      <div class="col">
+
+
+        <b>Прошедшее время с местоимениями:</b><br>
+        {% for i in past %}
+        <ul>
+            <li>{{ i }}</li>
+        </ul>
+        {% endfor %}
+
+
+    </div>
+  </div>
+</div>
+
+
+{% endif %}
+
+
+<!--s = [superlative, comparative, plural, average, forms_men, forms_women]-->
+
+{% if logos == "прилагательное" %}
+<b>Краткие и полные формы: </b><br>
+<p><b>Мужской род:</b>  {{ forms_men }}</p>
+<p><b>Женский род:</b> {{ forms_women }}</p>
+<p><b>Средний род:</b> {{ average }}</p>
+<p><b>Множественное число:</b> {{ plural }}</p><br>
+<p><b>Сравнительная степень:</b> {{ comparative }}</p>
+<p><b>Превосходная степень:</b> {{ superlative }}</p>
+{% endif %}
+
+
+
+<!--____________________-->
+{% if logos == "числительное" or logos == "местоимение" or logos == "существительное" %}
+<p></p><b>Падежи: </b>{{ forms }}</p>
+
+
+{% for i in declination %}
+<ul>
+
+    <li>{{ i }}</li>
+
+</ul>
+{% endfor %}
+
+{% endif %}
+
+
+<!--____________-->
+
+{% if logos == "наречие" %}
+<b></b><br>
+<b>Положительная степень: {{ positive_degree }}</b><br>
+<b>Сравнительная степен: {{ comparative }}</b><br>
+<b>Превосходная степень: {{ superlative }}</b>
+{% endif %}
+
+{% endblock %}

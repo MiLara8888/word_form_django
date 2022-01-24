@@ -1,0 +1,22 @@
+{% extends 'wordforms/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="row justify-content-center mt-4 ">
+            <div class="col-md-7 text-center">
+             {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+                
+    <h1>Введите слово</h1>
+    <form action="{% url 'results' %}" method="get">
+        {% csrf_token %}
+        <label for="team_name">Слово</label>
+        <input id="team_name" type="text" name="name_field" >
+        <input type="submit" value="Узнать!">
+    </form>
+            </div>
+    </div>
+{% endblock %}
